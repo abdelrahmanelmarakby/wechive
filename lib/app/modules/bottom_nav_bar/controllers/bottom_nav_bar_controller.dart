@@ -8,14 +8,15 @@ class BottomNavBarController extends GetxController {
 
   get CurrentScreen => _currentScreen;
 
-  int _navIndex = 0;
-  get navIndex => _navIndex;
+  final RxInt _navIndex = 0.obs;
+  get navIndex => _navIndex.value;
   onSelected(int index) {
-    _navIndex = index;
+    _navIndex.value = index;
     switch (index) {
       case 0:
         {
           _currentScreen = HomeView();
+
           break;
         }
       case 1:
@@ -24,6 +25,7 @@ class BottomNavBarController extends GetxController {
           break;
         }
     }
-    update();
+    
+        update();
   }
 }

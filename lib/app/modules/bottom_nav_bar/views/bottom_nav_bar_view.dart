@@ -9,19 +9,27 @@ import '../controllers/bottom_nav_bar_controller.dart';
 class BottomNavBarView extends GetView<BottomNavBarController> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: _bottomNavigationBar(),
+    return GetBuilder<BottomNavBarController>(
+      init: BottomNavBarController(),
+      builder: (BottomNavBarController controller) {
+        return Scaffold(
+          body: controller.CurrentScreen,
+          bottomNavigationBar: _bottomNavigationBar(controller),
+        );
+      },
     );
   }
 }
 
-_bottomNavigationBar() {
-  return GetBuilder<BottomNavBarController>(
-    init: BottomNavBarController(),
-    builder: (controller) => FlashyTabBar(
-        showElevation: false,
+_bottomNavigationBar(BottomNavBarController controller) {
+  return Obx(
+    () => FlashyTabBar(
+        height: 75,
+   
+        showElevation: true,
+        animationCurve: Curves.easeIn,
         animationDuration: Duration(milliseconds: 250),
-        backgroundColor: Colors.green.shade50,
+        backgroundColor: Colors.  blue.shade100,
         selectedIndex: controller.navIndex,
         items: [
           FlashyTabBarItem(
@@ -32,16 +40,8 @@ _bottomNavigationBar() {
                 //  color: Colors.green,
               ),
               title: Text(
-                "explore",
+                "Home",
               )),
-          FlashyTabBarItem(
-              inactiveColor: KShade,
-              activeColor: Colors.black,
-              icon: Icon(
-                Icons.shopping_basket_outlined,
-                //color: Colors.green,
-              ),
-              title: Text("cart")),
           FlashyTabBarItem(
               inactiveColor: KShade,
               activeColor: Colors.black,
