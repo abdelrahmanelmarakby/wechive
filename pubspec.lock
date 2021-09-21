@@ -127,6 +127,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
+  flashy_tab_bar2:
+    dependency: "direct main"
+    description:
+      name: flashy_tab_bar2
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.3"
   flutter:
     dependency: "direct main"
     description: flutter

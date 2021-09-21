@@ -63,7 +63,7 @@ class AuthController extends GetxController {
               verificationId: this.verId, smsCode: otp));
       if (userCredential.user != null) {
         isLoading.value = false;
-        Get.offAllNamed(Routes.HOME);
+        Get.offAllNamed(Routes.BOTTOM_NAV_BAR);
         user!.displayname = auth.currentUser!.displayName.toString();
         user!.email = auth.currentUser!.email.toString();
         user!.phoneNumber = auth.currentUser!.phoneNumber.toString();

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
+import 'package:wechive/app/modules/bottom_nav_bar/views/bottom_nav_bar_view.dart';
 import 'package:wechive/app/modules/home/bindings/home_binding.dart';
 import 'package:wechive/app/modules/home/views/home_view.dart';
-import 'package:wechive/app/modules/profile/bindings/profile_binding.dart';
 import 'package:wechive/app/modules/profile/views/profile_view.dart';
 
 part 'app_routes.dart';
@@ -21,7 +21,10 @@ class AppPages {
     GetPage(
       name: _Paths.PROFILE,
       page: () => ProfileView(),
-      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOTTOM_NAV_BAR,
+      page: () => BottomNavBarView(),
     ),
   ];
 }
