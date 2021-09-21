@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1038673242066",
+    "project_id": "wechive-c727d",
+    "storage_bucket": "wechive-c727d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038673242066:android:72ccc9177aa8364112ca0b",
+        "android_client_info": {
+          "package_name": "com.wechive.elmarakbeno.wechive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038673242066-tm8ctc50c94eakggpktvbrhmlruqs0s5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wechive.elmarakbeno.wechive",
+            "certificate_hash": "33470096df70dbc1829d1912a6b03c06a28d89e2"
+          }
+        },
+        {
+          "client_id": "1038673242066-0a6e9cpvnqs1eerc38pca9kqjjb2bqgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWNaeHnTIL27fdcFHcnR8ZhNB-EFmo2WA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038673242066-0a6e9cpvnqs1eerc38pca9kqjjb2bqgv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
