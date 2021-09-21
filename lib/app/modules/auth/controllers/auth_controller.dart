@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wechive/app/routes/app_pages.dart';
 import 'package:wechive/core/consts.dart';
-import 'package:wechive/main.dart';
 
 class AuthController extends GetxController {
   var isLoading = false.obs;

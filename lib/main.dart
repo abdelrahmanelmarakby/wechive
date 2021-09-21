@@ -10,7 +10,6 @@ import 'package:wechive/core/app_services/bindings.dart';
 import 'package:wechive/core/app_services/theme.dart';
 
 import 'app/routes/app_pages.dart';
-import 'core/shared_services/user_service.dart';
 
 
 void main() async {

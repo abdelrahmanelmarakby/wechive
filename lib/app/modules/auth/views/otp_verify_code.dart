@@ -181,11 +181,11 @@ class OtpLoginVerify extends GetView<AuthController> {
                     borderRadius: BorderRadius.circular(5),
                     boxShadow: [
                       BoxShadow(
-                          color: Colors.green.shade200,
+                          color: Colors.green.shade100,
                           offset: Offset(1, -2),
                           blurRadius: 5),
                       BoxShadow(
-                          color: Colors.green.shade200,
+                          color: Colors.green.shade100,
                           offset: Offset(-1, 2),
                           blurRadius: 5)
                     ]),
