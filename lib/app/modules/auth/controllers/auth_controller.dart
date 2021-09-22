@@ -68,6 +68,14 @@ class AuthController extends GetxController {
         user!.email = auth.currentUser!.email.toString();
         user!.phoneNumber = auth.currentUser!.phoneNumber.toString();
         user!.photoUrl = auth.currentUser!.photoURL.toString();
+        print(user!.displayname +
+            ":::::" +
+            user!.email +
+            ":::::" +
+            user!.phoneNumber +
+            ":::::" +
+            user!.photoUrl +
+            ":::::");
       }
     } on Exception catch (e) {
       Get.snackbar("otp info", " ${e.toString()}");

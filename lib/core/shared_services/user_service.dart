@@ -1,23 +1,39 @@
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class UserService extends GetxService {
   String displayname = "";
   String email = "";
   String photoUrl = "";
   String phoneNumber = "";
- String get getDisplayname => displayname;
 
- set setDisplayname(String displayname) => this.displayname = displayname;
+  GetStorage? user;
 
-  get getEmail => email;
+  String get getDisplayname => user!.read("displayname");
 
- set setEmail( email) => this.email = email;
+  set setDisplayname(String displayname) {
+    this.displayname = displayname;
+    user!.write("displayname", displayname);
+  }
 
-  get getPhotoUrl => photoUrl;
+  get getEmail => user!.read("email");
 
- set setPhotoUrl( photoUrl) => this.photoUrl = photoUrl;
+  set setEmail(email) {
+    this.email = email;
+    user!.write("email", email);
+  }
 
-  get getPhoneNumber => phoneNumber;
+  get getPhotoUrl => user!.read("photoUrl");
 
- set setPhoneNumber( phoneNumber) => this.phoneNumber = phoneNumber;
+  set setPhotoUrl(photoUrl) {
+    this.photoUrl = photoUrl;
+    user!.write("photoUrl", photoUrl);
+  }
+
+  get getPhoneNumber => user!.read("phoneNumber");
+
+  set setPhoneNumber(phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    user!.write("phoneNumber", phoneNumber);
+  }
 }
