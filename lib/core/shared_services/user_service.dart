@@ -1,39 +1,34 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
-class UserService extends GetxService {
-  String displayname = "";
-  String email = "";
-  String photoUrl = "";
-  String phoneNumber = "";
+class AddUser extends GetxService {
+  final String fullName;
+  final String location;
+  final String phoneNumber;
+  final String bio;
+  final String age;
+  final List<String> interests;
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-  GetStorage? user;
-
-  String get getDisplayname => user!.read("displayname");
-
-  set setDisplayname(String displayname) {
-    this.displayname = displayname;
-    user!.write("displayname", displayname);
+  Future<void> addUser() {
+    // Call the user's CollectionReference to add a new user
+    return users
+        .add({
+          'full_name': fullName, // John Doe
+          'location': location, // Stokes and Sons
+          'age': age, // 42
+          'bio': bio, // Hey connect with me
+          'interests': interests // 42
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
   }
 
-  get getEmail => user!.read("email");
-
-  set setEmail(email) {
-    this.email = email;
-    user!.write("email", email);
-  }
-
-  get getPhotoUrl => user!.read("photoUrl");
-
-  set setPhotoUrl(photoUrl) {
-    this.photoUrl = photoUrl;
-    user!.write("photoUrl", photoUrl);
-  }
-
-  get getPhoneNumber => user!.read("phoneNumber");
-
-  set setPhoneNumber(phoneNumber) {
-    this.phoneNumber = phoneNumber;
-    user!.write("phoneNumber", phoneNumber);
-  }
+  AddUser(
+      {this.fullName = "WhoAmI",
+      this.location = "Egypt",
+      this.bio = "Hello World!",
+      this.age = "",
+      this.phoneNumber = "",
+      this.interests = const ["", "", "", ""]});
 }
