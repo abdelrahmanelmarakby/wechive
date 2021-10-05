@@ -1,34 +1,43 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class AddUser extends GetxService {
-  final String fullName;
+class FirebaseUser extends GetxService {
+  //* User Profile Details
+  final String userName;
   final String location;
+  final String imageUrl;
   final String phoneNumber;
   final String bio;
   final String age;
   final List<String> interests;
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+  //*Firebase and user ops
+  //firestore operations
+  final CollectionReference _users =
+      FirebaseFirestore.instance.collection('users');
 
   Future<void> addUser() {
     // Call the user's CollectionReference to add a new user
-    return users
+    return _users
         .add({
-          'full_name': fullName, // John Doe
+          'full_name': userName, // John Doe
           'location': location, // Stokes and Sons
           'age': age, // 42
           'bio': bio, // Hey connect with me
-          'interests': interests // 42
+          'interests': interests, // 42
+          "phoneNumber": phoneNumber,
+          "imageUrl": imageUrl
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
 
-  AddUser(
-      {this.fullName = "WhoAmI",
+  FirebaseUser(
+      {this.userName = "WhoAmI",
       this.location = "Egypt",
       this.bio = "Hello World!",
       this.age = "",
       this.phoneNumber = "",
-      this.interests = const ["", "", "", ""]});
+      this.interests = const ["", "", "", ""],
+      this.imageUrl = ""});
 }
