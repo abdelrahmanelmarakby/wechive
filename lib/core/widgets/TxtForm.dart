@@ -2,28 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:wechive/core/widgets/Text.dart';
 
 class TxtForm extends StatelessWidget {
-  const TxtForm({
-    Key? key,
-    required this.textFieldName,
-    this.textFieldNameColor = Colors.grey,
-    this.textFieldHint = " ",
-    this.validator,
-    this.autofillHints,
-    required this.editingController,
-    this.keyboardType,
-    this.fillColor = Colors.white,
-    this.validateMode = AutovalidateMode.onUserInteraction,
-  }) : super(key: key);
+  const TxtForm(
+      {Key? key,
+      required this.textFieldName,
+      required this.editingController,
+      this.textFieldNameColor = Colors.grey,
+      this.textFieldHint = " ",
+      this.inputAction = TextInputAction.next,
+      this.obscure = false,
+      this.validator,
+      this.autofillHints,
+      this.keyboardType,
+      this.fillColor = Colors.white,
+      this.validateMode = AutovalidateMode.always})
+      : super(key: key);
   final String textFieldName;
   final Color textFieldNameColor;
   final String textFieldHint;
+  final bool obscure;
   final String? Function(String?)? validator;
   final Iterable<String>? autofillHints;
   final TextEditingController editingController;
   final TextInputType? keyboardType;
   final Color fillColor;
   final AutovalidateMode validateMode;
-
+  final TextInputAction inputAction;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,6 +41,9 @@ class TxtForm extends StatelessWidget {
             ),
           ),
           TextFormField(
+            enableSuggestions: true,
+            textInputAction: inputAction,
+            obscureText: obscure,
             autofillHints: autofillHints,
             autovalidateMode: validateMode,
             controller: editingController,

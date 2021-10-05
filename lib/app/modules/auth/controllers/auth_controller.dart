@@ -13,6 +13,9 @@ import 'package:image_picker/image_picker.dart'; // For Image Picker
 import 'package:wechive/core/consts.dart';
 
 class AuthController extends GetxController {
+  TextEditingController userName = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   var isLoading = false.obs;
   var verId = '';
   var authStatus = ''.obs;
@@ -99,8 +102,7 @@ class AuthController extends GetxController {
       print("trying to verify");
 
       UserCredential userCredential = await auth.signInWithCredential(
-          PhoneAuthProvider.credential(
-              verificationId: verId, smsCode: otp));
+          PhoneAuthProvider.credential(verificationId: verId, smsCode: otp));
       if (userCredential.user != null) {
         isLoading.value = false;
         Get.offAll(() => CompleteProfile());
@@ -112,23 +114,25 @@ class AuthController extends GetxController {
   }
 
   //***************************EMAIL***************************************/
- 
-Future<UserCredential> signInWithGoogle() async {
-  // Trigger the authentication flow
-  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  // Obtain the auth details from the request
-  final GoogleSignInAuthentication googleAuth = await googleUser!.authentication;
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  // Create a new credential
-  final credential = GoogleAuthProvider.credential(
-    accessToken: googleAuth.accessToken,
-    idToken: googleAuth.idToken,
-  );
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
 
-  // Once signed in, return the UserCredential
-  return await FirebaseAuth.instance.signInWithCredential(credential);
-}
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
 /*Future<UserCredential> signInWithGitHub(BuildContext context) async {
   // Create a GitHubSignIn instance
       final GitHubSignIn gitHubSignIn = GitHubSignIn(

@@ -2,20 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:wechive/app/modules/auth/controllers/auth_controller.dart';
-import 'package:wechive/app/modules/auth/views/signup.dart';
 import 'package:wechive/core/consts.dart';
 import 'package:wechive/core/widgets/Text.dart';
 import 'package:wechive/core/widgets/TxtForm.dart';
 
-class Login extends GetView<AuthController> {
-  const Login({Key? key}) : super(key: key);
-
+class SignUp extends GetView<AuthController> {
+  const SignUp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0.0,
+        iconTheme: IconThemeData(color: KPink),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -31,21 +30,12 @@ class Login extends GetView<AuthController> {
                   size: 28,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Txt(
                       "Please login or create an account ",
                       color: Colors.grey,
                       size: 16,
-                    ),
-                    GestureDetector(
-                      onTap: () => Get.to(SignUp()),
-                      child: Txt(
-                        "SIGNUP ",
-                        color: KBlue,
-                        size: 20,
-                        weight: FontWeight.bold,
-                      ),
                     ),
                   ],
                 ),
@@ -54,11 +44,9 @@ class Login extends GetView<AuthController> {
                   textFieldName: "User name",
                   editingController: controller.userName,
                   autofillHints: [
-                    AutofillHints.nickname,
                     AutofillHints.username,
-                    AutofillHints.familyName
+                    AutofillHints.newUsername
                   ],
-                  keyboardType: TextInputType.name,
                   validator: MultiValidator([
                     RequiredValidator(errorText: "Must not be empty"),
                     MinLengthValidator(4,
@@ -73,10 +61,6 @@ class Login extends GetView<AuthController> {
                 TxtForm(
                   textFieldName: "Email",
                   editingController: controller.email,
-                  keyboardType: TextInputType.emailAddress,
-                  autofillHints: [
-                    AutofillHints.email,
-                  ],
                   validator: MultiValidator([
                     EmailValidator(errorText: "Must be a valid email address"),
                     RequiredValidator(errorText: "Can't be empty")
@@ -86,12 +70,11 @@ class Login extends GetView<AuthController> {
                 const SizedBox(height: 8.0),
                 TxtForm(
                   textFieldName: "Password",
-                  obscure: true,
+                  obscure: false,
                   editingController: controller.password,
                   validator: MinLengthValidator(6,
                       errorText: "Must be at least 6 digits long"),
                   inputAction: TextInputAction.done,
-                  keyboardType: TextInputType.visiblePassword,
                 ),
               ],
             ),
