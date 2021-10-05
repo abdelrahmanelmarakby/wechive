@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:github_sign_in/github_sign_in.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:wechive/app/modules/auth/views/complete_profile.dart';
@@ -11,8 +10,6 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart'
     as firebase_storage; // For File Upload To Firestore
 import 'package:image_picker/image_picker.dart'; // For Image Picker
-import 'package:path/path.dart' as path;
-import 'package:wechive/app/modules/home/views/home_view.dart';
 import 'package:wechive/core/consts.dart';
 
 class AuthController extends GetxController {
@@ -86,11 +83,12 @@ class AuthController extends GetxController {
           print("Code Sent $id");
 
           isLoading.value = false;
+          // ignore: unnecessary_this
           this.verId = id;
           authStatus.value = "login successfully";
         },
         codeAutoRetrievalTimeout: (String id) {
-          this.verId = id;
+          verId = id;
         });
   }
 
@@ -102,7 +100,7 @@ class AuthController extends GetxController {
 
       UserCredential userCredential = await auth.signInWithCredential(
           PhoneAuthProvider.credential(
-              verificationId: this.verId, smsCode: otp));
+              verificationId: verId, smsCode: otp));
       if (userCredential.user != null) {
         isLoading.value = false;
         Get.offAll(() => CompleteProfile());
@@ -131,7 +129,7 @@ Future<UserCredential> signInWithGoogle() async {
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(credential);
 }
-Future<UserCredential> signInWithGitHub(BuildContext context) async {
+/*Future<UserCredential> signInWithGitHub(BuildContext context) async {
   // Create a GitHubSignIn instance
       final GitHubSignIn gitHubSignIn = GitHubSignIn(
           clientId: "393f07b7644caab767b9",
@@ -146,7 +144,7 @@ Future<UserCredential> signInWithGitHub(BuildContext context) async {
 
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
-}
+}*/
   var country_list = [
     "Afghanistan",
     "Albania",

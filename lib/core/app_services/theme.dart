@@ -6,7 +6,7 @@ import 'package:wechive/core/consts.dart';
 
 class Themes {
   static final light = ThemeData.light().copyWith(
-      scaffoldBackgroundColor: Colors.blue.shade50,
+      scaffoldBackgroundColor: Colors.grey.shade50,
       primaryColor: KBlue,
       textTheme: TextTheme(
           headline1: GoogleFonts.cairo(),

@@ -4,6 +4,7 @@ import 'package:ionicons/ionicons.dart';
 import 'package:wechive/app/modules/auth/controllers/auth_controller.dart';
 import 'package:wechive/core/consts.dart';
 import 'package:wechive/core/widgets/Text.dart';
+import 'package:wechive/core/widgets/TxtForm.dart';
 
 class CompleteProfile extends GetView<AuthController> {
   @override
@@ -71,45 +72,9 @@ class CompleteProfile extends GetView<AuthController> {
                     ),
                   ),
                   const SizedBox(height: 12.0),
-                  Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Txt(
-                            "User name",
-                            textAlign: TextAlign.left,
-                            color: KBlue,
-                          ),
-                        ),
-                        TextFormField(
-                          autofillHints: [AutofillHints.name],
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.phone,
-                          keyboardType: TextInputType.name,
-                          validator: (value) {
-                            String pattern = r"/^([a-z']+(-| )?)+$/i";
-                            RegExp regExp = RegExp(pattern);
-                            if (value!.length == 0) {
-                              return 'Please enter mobile number';
-                            } else if (!regExp.hasMatch(value)) {
-                              return 'Please enter valid mobile number';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              hintText: "your name",
-                              //    labelText: "your name".tr,
-                              focusedBorder: UnderlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6),
-                                  borderSide: BorderSide(color: Colors.green)),
-                              fillColor: Colors.grey.shade50.withOpacity(.5),
-                              filled: true,
-                              border: UnderlineInputBorder(
-                                  borderRadius: BorderRadius.circular(6))),
-                        ),
-                      ],
-                    ),
+                  TxtForm(
+                    editingController: controller.phone,
+                    textFieldName: "User name",
                   ),
                 ],
               ),

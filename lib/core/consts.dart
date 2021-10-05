@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:wechive/core/shared_services/user_service.dart';
 
 //UI
 const Color KPink = Color(0xffFC5185);
