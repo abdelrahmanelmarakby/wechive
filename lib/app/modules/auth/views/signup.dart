@@ -40,13 +40,15 @@ class SignUp extends GetView<AuthController> {
                   ],
                 ),
                 const SizedBox(height: 16.0),
-                TxtForm(
+                  TxtForm(
                   textFieldName: "User name",
                   editingController: controller.userName,
                   autofillHints: [
+                    AutofillHints.nickname,
                     AutofillHints.username,
-                    AutofillHints.newUsername
+                    AutofillHints.familyName
                   ],
+                  keyboardType: TextInputType.name,
                   validator: MultiValidator([
                     RequiredValidator(errorText: "Must not be empty"),
                     MinLengthValidator(4,
@@ -61,6 +63,10 @@ class SignUp extends GetView<AuthController> {
                 TxtForm(
                   textFieldName: "Email",
                   editingController: controller.email,
+                  keyboardType: TextInputType.emailAddress,
+                  autofillHints: [
+                    AutofillHints.email,
+                  ],
                   validator: MultiValidator([
                     EmailValidator(errorText: "Must be a valid email address"),
                     RequiredValidator(errorText: "Can't be empty")
@@ -70,11 +76,12 @@ class SignUp extends GetView<AuthController> {
                 const SizedBox(height: 8.0),
                 TxtForm(
                   textFieldName: "Password",
-                  obscure: false,
+                  obscure: true,
                   editingController: controller.password,
                   validator: MinLengthValidator(6,
                       errorText: "Must be at least 6 digits long"),
                   inputAction: TextInputAction.done,
+                  keyboardType: TextInputType.visiblePassword,
                 ),
               ],
             ),

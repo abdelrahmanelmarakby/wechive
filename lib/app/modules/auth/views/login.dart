@@ -93,6 +93,49 @@ class Login extends GetView<AuthController> {
                   inputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
                 ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Txt(
+                        "OR",
+                        size: 20,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: KBlue,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(KRaduis + KRaduis))),
+                    onPressed: () async => controller.signInWithGoogle(),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/images/g-logo.png",
+                          height: 50,
+                        ),
+                        const SizedBox(width: 35.0),
+                        Txt(
+                          "Sign in with google",
+                          weight: FontWeight.bold,
+                        )
+                      ],
+                    ))
               ],
             ),
           ),
