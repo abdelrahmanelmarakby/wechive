@@ -28,6 +28,7 @@ dependencies:
   path: ^1.8.0
   pin_code_fields: ^7.3.0
   responsive_framework: ^0.1.4
+  twitter_login: ^4.0.1
 
 dev_dependencies:
   flutter_test:

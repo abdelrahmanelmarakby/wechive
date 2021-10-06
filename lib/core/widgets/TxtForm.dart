@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wechive/core/consts.dart';
 import 'package:wechive/core/widgets/Text.dart';
 
 class TxtForm extends StatelessWidget {
@@ -6,7 +7,7 @@ class TxtForm extends StatelessWidget {
       {Key? key,
       required this.textFieldName,
       required this.editingController,
-      this.textFieldNameColor = Colors.grey,
+      this.textFieldNameColor = KBlue,
       this.textFieldHint = " ",
       this.inputAction = TextInputAction.next,
       this.obscure = false,

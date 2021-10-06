@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:wechive/app/modules/auth/controllers/auth_controller.dart';
@@ -72,10 +73,40 @@ class CompleteProfile extends GetView<AuthController> {
                     ),
                   ),
                   const SizedBox(height: 12.0),
-                  TxtForm(
-                    editingController: controller.phone,
-                    textFieldName: "User name",
-                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Txt(
+                        "Location",
+                        size: 18,
+                        weight: FontWeight.bold,
+                      ),
+                      Obx(
+                        () => DropdownButtonFormField<String>(
+                          autovalidateMode: AutovalidateMode.always,
+                          itemHeight: 70,
+                          validator:
+                              RequiredValidator(errorText: "Can't be empty"),
+                          elevation: 4,
+                          disabledHint: Text("Stopped"),
+                          value: controller.userLocation.value,
+                          onChanged: (value) {
+                            controller.userLocation.value = value.toString();
+                          },
+                          items: controller.country_list.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Txt(
+                                value,
+                                size: 16,
+                                color: KBlue,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),

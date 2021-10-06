@@ -119,6 +119,8 @@ class AuthController extends GetxController {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+
+      FirebaseAuth.instance.currentUser!.reload();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -134,6 +136,8 @@ class AuthController extends GetxController {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
+
+      FirebaseAuth.instance.currentUser!.reload();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -158,8 +162,32 @@ class AuthController extends GetxController {
     );
 
     // Once signed in, return the UserCredential
+    FirebaseAuth.instance.currentUser!.reload();
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
+/*
+  Future<UserCredential> signInWithTwitter() async {
+    // Create a TwitterLogin instance
+    final TwitterLogin twitterLogin = new TwitterLogin(
+      consumerKey: '<your consumer key>',
+      consumerSecret: ' <your consumer secret>',
+    );
+
+    // Trigger the sign-in flow
+    final TwitterLoginResult loginResult = await twitterLogin.authorize();
+
+    // Get the Logged In session
+    final TwitterSession twitterSession = loginResult.session;
+
+    // Create a credential from the access token
+    final AuthCredential twitterAuthCredential = TwitterAuthProvider.credential(
+        accessToken: twitterSession.token, secret: twitterSession.secret);
+
+    FirebaseAuth.instance.currentUser!.reload();
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance
+        .signInWithCredential(twitterAuthCredential);
+  }*/
 
 /*Future<UserCredential> signInWithGitHub(BuildContext context) async {
   // Create a GitHubSignIn instance
@@ -177,6 +205,8 @@ class AuthController extends GetxController {
   // Once signed in, return the UserCredential
   return await FirebaseAuth.instance.signInWithCredential(githubAuthCredential);
 }*/
+//*lOCATION
+  final RxString userLocation = "Egypt".obs;
   var country_list = [
     "Afghanistan",
     "Albania",
