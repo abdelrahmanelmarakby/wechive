@@ -40,7 +40,7 @@ class SignUp extends GetView<AuthController> {
                   ],
                 ),
                 const SizedBox(height: 16.0),
-                  TxtForm(
+                TxtForm(
                   textFieldName: "User name",
                   editingController: controller.userName,
                   autofillHints: [
@@ -76,13 +76,35 @@ class SignUp extends GetView<AuthController> {
                 const SizedBox(height: 8.0),
                 TxtForm(
                   textFieldName: "Password",
-                  obscure: true,
+                  obscure: false,
                   editingController: controller.password,
                   validator: MinLengthValidator(6,
                       errorText: "Must be at least 6 digits long"),
                   inputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
                 ),
+                const SizedBox(height: 12.0),
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: KBlue,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(KRaduis + KRaduis))),
+                    onPressed: () async =>
+                        controller.createAccountWithEmailAndPassword(
+                            controller.email.text, controller.password.text),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Txt(
+                          "SIGN UP",
+                          color: Colors.white,
+                          size: 18,
+                          weight: FontWeight.bold,
+                        )
+                      ],
+                    )),
               ],
             ),
           ),

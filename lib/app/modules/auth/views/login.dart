@@ -50,25 +50,6 @@ class Login extends GetView<AuthController> {
                   ],
                 ),
                 const SizedBox(height: 16.0),
-                TxtForm(
-                  textFieldName: "User name",
-                  editingController: controller.userName,
-                  autofillHints: [
-                    AutofillHints.nickname,
-                    AutofillHints.username,
-                    AutofillHints.familyName
-                  ],
-                  keyboardType: TextInputType.name,
-                  validator: MultiValidator([
-                    RequiredValidator(errorText: "Must not be empty"),
-                    MinLengthValidator(4,
-                        errorText: "Must be more than 4 digits"),
-                    PatternValidator(
-                        r"^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$",
-                        errorText: "Must be a valid user name")
-                  ]),
-                  textFieldHint: "Your-name",
-                ),
                 const SizedBox(height: 8.0),
                 TxtForm(
                   textFieldName: "Email",
@@ -93,6 +74,27 @@ class Login extends GetView<AuthController> {
                   inputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
                 ),
+                const SizedBox(height: 12.0),
+                TextButton(
+                    style: TextButton.styleFrom(
+                        backgroundColor: KBlue,
+                        elevation: 4,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(KRaduis + KRaduis))),
+                    onPressed: () async => controller.loginWithEmailAndPassword(
+                        controller.email.text, controller.password.text),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Txt(
+                          "SIGN IN",
+                          color: Colors.white,
+                          size: 18,
+                          weight: FontWeight.bold,
+                        )
+                      ],
+                    )),
                 Row(
                   children: [
                     Expanded(
@@ -118,7 +120,8 @@ class Login extends GetView<AuthController> {
                 ),
                 TextButton(
                     style: TextButton.styleFrom(
-                        backgroundColor: KBlue,
+                        backgroundColor: Colors.white,
+                        elevation: 4,
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(KRaduis + KRaduis))),
@@ -132,6 +135,8 @@ class Login extends GetView<AuthController> {
                         const SizedBox(width: 35.0),
                         Txt(
                           "Sign in with google",
+                          color: KBlue,
+                          size: 18,
                           weight: FontWeight.bold,
                         )
                       ],
