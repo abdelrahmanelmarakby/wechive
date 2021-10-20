@@ -24,6 +24,7 @@ dependencies:
   google_sign_in: ^5.1.1
   image_picker: ^0.8.4+2
   ionicons: ^0.1.2
+  multi_select_flutter: ^4.0.0
   numeric_keyboard: ^1.0.0
   path: ^1.8.0
   pin_code_fields: ^7.3.0

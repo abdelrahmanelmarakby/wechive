@@ -6,6 +6,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 import 'package:wechive/app/modules/auth/views/complete_profile.dart';
 import 'package:wechive/app/modules/auth/views/login.dart';
+import 'package:wechive/app/modules/bottom_nav_bar/views/splash_screen_screen.dart';
+import 'package:wechive/app/modules/home/views/home_view.dart';
 import 'package:wechive/core/app_services/bindings.dart';
 import 'package:wechive/core/app_services/theme.dart';
 import 'package:wechive/core/consts.dart';
@@ -71,9 +73,8 @@ class _InitializerWidgetState extends State<InitializerWidget> {
       if (_user == null) {
         return Login();
       } else {
-        print(_user);
         authUserID = _user!.uid;
-        return CompleteProfile();
+        return SplashScreen1Sub();
       }
     }
   }

@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wechive/app/modules/home/views/home_view.dart';
 import 'package:wechive/app/modules/profile/views/profile_view.dart';
+import 'package:wechive/data/firestore_data.dart';
 
 class BottomNavBarController extends GetxController {
+  @override
+  void onInit() {
+    print( FirebaseData.getAllUsers().toString());
+    super.onInit();
+  }
+
   Widget _currentScreen = HomeView();
 
   get CurrentScreen => _currentScreen;
@@ -25,7 +32,7 @@ class BottomNavBarController extends GetxController {
           break;
         }
     }
-    
-        update();
+
+    update();
   }
 }

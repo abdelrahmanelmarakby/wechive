@@ -7,6 +7,7 @@ class TxtForm extends StatelessWidget {
       {Key? key,
       required this.textFieldName,
       required this.editingController,
+      this.textFieldNameAlignment = Alignment.centerLeft,
       this.textFieldNameColor = KBlue,
       this.textFieldHint = " ",
       this.inputAction = TextInputAction.next,
@@ -28,41 +29,43 @@ class TxtForm extends StatelessWidget {
   final Color fillColor;
   final AutovalidateMode validateMode;
   final TextInputAction inputAction;
+  final Alignment textFieldNameAlignment;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.centerLeft,
-            child: Txt(
-              textFieldName,
-              textAlign: TextAlign.left,
-              color: textFieldNameColor,
-            ),
+    return Column(
+      children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          child: Txt(
+            textFieldName,
+            textAlign: TextAlign.left,
+            color: textFieldNameColor,
           ),
-          TextFormField(
-            enableSuggestions: true,
-            textInputAction: inputAction,
-            obscureText: obscure,
-            autofillHints: autofillHints,
-            autovalidateMode: validateMode,
-            controller: editingController,
-            keyboardType: keyboardType,
-            validator: validator,
-            decoration: InputDecoration(
-                hintText: textFieldHint,
-                //    labelText: "your name".tr,
-                focusedBorder: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(6),
-                    borderSide: BorderSide(color: Colors.green)),
-                fillColor: fillColor,
-                filled: true,
-                border: UnderlineInputBorder(
-                    borderRadius: BorderRadius.circular(6))),
-          ),
-        ],
-      ),
+        ),
+        TextFormField(
+          enableSuggestions: true,
+          textInputAction: inputAction,
+          obscureText: obscure,
+          autofillHints: autofillHints,
+          autovalidateMode: validateMode,
+          controller: editingController,
+          keyboardType: keyboardType,
+          validator: validator,
+          enableIMEPersonalizedLearning: true,
+          smartDashesType: SmartDashesType.enabled,
+          smartQuotesType: SmartQuotesType.enabled,
+          decoration: InputDecoration(
+              hintText: textFieldHint,
+              //    labelText: "your name".tr,
+              focusedBorder: UnderlineInputBorder(
+                  borderRadius: BorderRadius.circular(6),
+                  borderSide: BorderSide(color: Colors.green)),
+              fillColor: fillColor,
+              filled: true,
+              border:
+                  UnderlineInputBorder(borderRadius: BorderRadius.circular(6))),
+        ),
+      ],
     );
   }
 }

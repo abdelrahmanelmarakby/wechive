@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart' as firebase_core;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,27 @@ class AuthController extends GetxController {
   TextEditingController userName = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  List selectedInterests = [""];
+  List allInterests = [
+    "Entertainment",
+    'News',
+    "Politics",
+    "Automobile ",
+    "Sports & Outdoors ",
+    "Education",
+    "Fashion",
+    "Travel",
+    "Food",
+    "Tech & Electronics",
+    "Programming",
+    "Pets",
+    "Finance and business",
+    "Space",
+    "Gaming",
+    "Beauty & Personal Care ",
+    "Apps ",
+    "Science",
+  ];
   var isLoading = false.obs;
   var verId = '';
   var authStatus = ''.obs;
@@ -23,6 +45,9 @@ class AuthController extends GetxController {
   final phone = TextEditingController();
   final otp = TextEditingController();
   var auth = FirebaseAuth.instance;
+
+  final Rxn<User> user = Rxn<User>();
+
   var onTapRecognizer;
 
   //*FIRESTORAGE OPS
@@ -113,6 +138,14 @@ class AuthController extends GetxController {
     return false;
   }
 
+  @override
+  void onInit() {
+    super.onInit();
+
+    user.bindStream(auth.authStateChanges());
+    authUserID = user.value!.uid;
+  }
+
   //***************************EMAIL***************************************/
   Future createAccountWithEmailAndPassword(
       String email, String password) async {
@@ -138,6 +171,7 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password);
 
       FirebaseAuth.instance.currentUser!.reload();
+      Get.offAll(CompleteProfile());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -162,9 +196,27 @@ class AuthController extends GetxController {
     );
 
     // Once signed in, return the UserCredential
-    FirebaseAuth.instance.currentUser!.reload();
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    Get.offAll(CompleteProfile());
+    return await FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .then((value) {
+      FirebaseAuth.instance.currentUser!.reload();
+      Get.offAll(CompleteProfile());
+      return value;
+    });
   }
+
+  Future<void> addUser(Map<String, dynamic> user) {
+    final CollectionReference _users =
+        FirebaseFirestore.instance.collection('users');
+    // Call the user's CollectionReference to add a new user
+    return _users
+        .doc(this.user.value!.uid.toString())
+        .set(user)
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
 /*
   Future<UserCredential> signInWithTwitter() async {
     // Create a TwitterLogin instance

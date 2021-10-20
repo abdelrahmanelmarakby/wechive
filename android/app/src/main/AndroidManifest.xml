@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wechive.elmarakbeno.wechive">
-    
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
+   
         android:label="wechive"
         android:icon="@mipmap/ic_launcher">
         <activity

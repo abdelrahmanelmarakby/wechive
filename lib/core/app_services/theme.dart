@@ -20,7 +20,10 @@ class Themes {
           headline2: GoogleFonts.cairo(color: KBlue),
           headline3: GoogleFonts.cairo(color: KBlue),
           headline4: GoogleFonts.cairo(color: KBlue),
-          headline5: GoogleFonts.cairo(color: KBlue),
+          headline5: GoogleFonts.cairo(
+            color: Colors.white,
+            fontSize: 14,
+          ),
           headline6: GoogleFonts.cairo(color: KBlue)));
   static final dark = ThemeData.dark().copyWith(
       //scaffoldBackgroundColor: Color(0xff23f788),

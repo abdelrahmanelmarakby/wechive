@@ -21,5 +21,5 @@ var login = Image.asset(
   color: KBlue,
 );
 //LOGIC
-var authUserID="";
+late final authUserID;
 //UserService? user;

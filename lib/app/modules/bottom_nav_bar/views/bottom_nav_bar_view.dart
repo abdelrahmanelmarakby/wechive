@@ -2,6 +2,8 @@ import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:wechive/core/consts.dart';
 
 import '../controllers/bottom_nav_bar_controller.dart';
@@ -24,31 +26,47 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
 _bottomNavigationBar(BottomNavBarController controller) {
   return Obx(
     () => FlashyTabBar(
-        height: 75,
-   
-        showElevation: true,
         animationCurve: Curves.easeIn,
         animationDuration: Duration(milliseconds: 250),
-        backgroundColor: Colors.  blue.shade100,
         selectedIndex: controller.navIndex,
         items: [
           FlashyTabBarItem(
               inactiveColor: KShade,
-              activeColor: Colors.black,
+              activeColor: KBlue,
               icon: Icon(
                 Icons.explore_outlined,
                 //  color: Colors.green,
               ),
               title: Text(
-                "Home",
+                "Explore",
+                style: GoogleFonts.cairo(
+                  fontWeight: FontWeight.bold,
+                ),
               )),
           FlashyTabBarItem(
               inactiveColor: KShade,
-              activeColor: Colors.black,
+              activeColor: KBlue,
               icon: Icon(
-                Icons.account_circle_outlined,
+                Ionicons.add_circle_outline,
               ),
-              title: Text("profile")),
+              title: Text(
+                "Add Room",
+                style: GoogleFonts.cairo(
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
+          FlashyTabBarItem(
+              inactiveColor: KShade,
+              activeColor: KBlue,
+              icon: Icon(
+                Ionicons.person_circle_outline,
+              ),
+              title: Text(
+                "Profile",
+                style: GoogleFonts.cairo(
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
         ],
         onItemSelected: (index) {
           controller.onSelected(index);
