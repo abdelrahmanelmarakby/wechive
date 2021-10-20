@@ -1,15 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:wechive/app/modules/auth/controllers/auth_controller.dart';
 import 'package:wechive/app/routes/app_pages.dart';
 import 'package:wechive/core/consts.dart';
-import 'package:wechive/core/shared_services/user_model.dart';
+import 'package:wechive/core/models/user_model.dart';
 import 'package:wechive/core/widgets/Text.dart';
-import 'package:wechive/core/widgets/TxtForm.dart';
 
 class CompleteProfile extends GetView<AuthController> {
   // single choice value

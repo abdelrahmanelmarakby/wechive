@@ -16,7 +16,7 @@ class Txt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text.toString(),
       overflow: TextOverflow.visible,
       softWrap: true,
       textAlign: textAlign,

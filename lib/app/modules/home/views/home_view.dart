@@ -15,12 +15,36 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder(
+      body: FutureBuilder<List>(
         future: FirebaseData.getAllRooms(),
         builder: (context, snapshot) {
-          var data = snapshot.data;
+          List data = snapshot.data as List;
           if (snapshot.hasData)
-            return Center(child: Txt(data.toString()));
+            return SingleChildScrollView(
+              child: Column(
+                children: List.generate(
+                    data.length,
+                    (index) => Card(
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * .2,
+                            child: Column(
+                              children: [
+                                Txt(
+                                  data[index]['name'],
+                                  size: 20,
+                                  weight: FontWeight.bold,
+                                ),
+                                Txt(data[index]['interests'].toString()),
+                                Txt(data[index]['tasks'].toString()),
+                                Txt(data[index]['goals'].toString()),
+                                Txt(data[index]['desc']),
+                              ],
+                            ),
+                          ),
+                        )),
+              ),
+            );
           else
             return Center(
               child: CircularProgressIndicator(

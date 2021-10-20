@@ -143,7 +143,6 @@ class AuthController extends GetxController {
     super.onInit();
 
     user.bindStream(auth.authStateChanges());
-    authUserID = user.value!.uid;
   }
 
   //***************************EMAIL***************************************/
@@ -152,8 +151,10 @@ class AuthController extends GetxController {
     try {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
-
+      
       FirebaseAuth.instance.currentUser!.reload();
+      
+    authUserID = user.value!.uid;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -171,6 +172,8 @@ class AuthController extends GetxController {
           .signInWithEmailAndPassword(email: email, password: password);
 
       FirebaseAuth.instance.currentUser!.reload();
+
+    authUserID = user.value!.uid;
       Get.offAll(CompleteProfile());
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -201,6 +204,8 @@ class AuthController extends GetxController {
         .signInWithCredential(credential)
         .then((value) {
       FirebaseAuth.instance.currentUser!.reload();
+      
+    authUserID = user.value!.uid;
       Get.offAll(CompleteProfile());
       return value;
     });
@@ -210,6 +215,8 @@ class AuthController extends GetxController {
     final CollectionReference _users =
         FirebaseFirestore.instance.collection('users');
     // Call the user's CollectionReference to add a new user
+    
+    authUserID = this.user.value!.uid;
     return _users
         .doc(this.user.value!.uid.toString())
         .set(user)
