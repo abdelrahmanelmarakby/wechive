@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:wechive/app/modules/auth/views/complete_profile.dart';
+import 'package:wechive/core/app_services/theme.dart';
 import 'package:wechive/core/consts.dart';
 import 'package:wechive/core/widgets/Text.dart';
 import 'package:wechive/data/firestore_data.dart';
@@ -15,12 +16,12 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FutureBuilder<List>(
+      body: FutureBuilder(
         future: FirebaseData.getAllRooms(),
         builder: (context, snapshot) {
-          List data = snapshot.data as List;
-          if (snapshot.hasData)
-            return SingleChildScrollView(
+          if (snapshot.data != null) {
+            List data = snapshot.data as List;
+            return SingleChildScrollView( 
               child: Column(
                 children: List.generate(
                     data.length,
@@ -45,7 +46,7 @@ class HomeView extends GetView<HomeController> {
                         )),
               ),
             );
-          else
+          } else
             return Center(
               child: CircularProgressIndicator(
                 color: KBlue,

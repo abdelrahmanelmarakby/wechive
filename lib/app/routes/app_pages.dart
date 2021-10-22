@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:wechive/app/modules/add_room/bindings/add_room_binding.dart';
+import 'package:wechive/app/modules/add_room/views/add_room_view.dart';
 import 'package:wechive/app/modules/bottom_nav_bar/views/bottom_nav_bar_view.dart';
 import 'package:wechive/app/modules/home/bindings/home_binding.dart';
 import 'package:wechive/app/modules/home/views/home_view.dart';
@@ -25,6 +27,11 @@ class AppPages {
     GetPage(
       name: _Paths.BOTTOM_NAV_BAR,
       page: () => BottomNavBarView(),
+    ),
+    GetPage(
+      name: _Paths.ADD_ROOM,
+      page: () => AddRoomView(),
+      binding: AddRoomBinding(),
     ),
   ];
 }
